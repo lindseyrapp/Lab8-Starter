@@ -3,7 +3,7 @@
     "short_name": "Lindsey Rappaport",
     "description": "",
     "start_url": "",
-    "display": "standalone",
+    "display": "",
     "background_color": "yellow",
     "theme_color": "orange",
     "icons": [

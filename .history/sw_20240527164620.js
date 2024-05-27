@@ -53,5 +53,5 @@ self.addEventListener('fetch', function (event) {
         });
       });
     })
-  );
+  );            network response.
 });
