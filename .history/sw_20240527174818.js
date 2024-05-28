@@ -46,15 +46,17 @@ self.addEventListener('fetch', function (event) {
       // B8. If the request is in the cache, return with the cached version.
       //    Otherwise fetch the resource, add it to the cache, and return
       //    network response.
-      return fetch(event.request).then(function (response) {
-        // Check if the request scheme is supported
-        if (!event.request.url.startsWith('http')) {
-          return response;
-        }
-  
-        // Cache the response
-        cache.put(event.request, response.clone());
+      return cache.match(event.request).then(function (response) {
+        return response || fetch(event.request).then(function (response) {
+          // Check if the request scheme is supported
+      if (!event.request.url.startsWith('http')) {
         return response;
+      }
+
+      // Cache the response
+      cache.put(event.request, response.clone());
+      return response;
+        });
       });
     })
   );
